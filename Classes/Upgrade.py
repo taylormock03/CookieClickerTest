@@ -28,7 +28,7 @@ class Upgrade:
 
     def calculateEffect(self, moneyOutput):
         if self.effect == "%":
-            return moneyOutput * self.magnitude
+            return moneyOutput * self.magnitude/100
 
         # This will change
         elif self.effect == "+":
@@ -37,7 +37,6 @@ class Upgrade:
     def buyUpgrade(self):
         self.player.money -= self.cost
         self.player.upgrades.append(self)
-        self.state = "bought"
 
     def __str__(self) -> str:
         if self.effect == "%":

@@ -24,11 +24,15 @@ class Building:
     def calculateCost(self):
         return math.ceil(self.baseCost* 1.15**self.quantity)
 
-    def calculateOutput(self):
-        return self.production* self.quantity
+    def calculateOutput(self, upgrades):
+        output = self.production* self.quantity
+        for x in upgrades:
+            output = x.calculateEffect(output)
 
-    def calculateCps(self, TICKSPEED):
-        return self.calculateOutput() * (1000/TICKSPEED)
+        return output
+
+    def calculateCps(self, TICKSPEED, player):
+        return self.calculateOutput(player.upgrades) * (1000/TICKSPEED)
 
     def __str__(self) -> str:
         return self.name + " x" + str(self.quantity) + ": $" + str(self.calculateCost())
