@@ -1,7 +1,7 @@
 import math
 
 
-class Item:
+class Building:
     name = ""
     baseCost = 0
     production = 0
@@ -17,7 +17,7 @@ class Item:
         self.player = player
         self.quantity = 0
 
-    def buyItem(self):
+    def buyBuilding(self):
         self.player.money -= self.calculateCost()
         self.quantity+=1
 

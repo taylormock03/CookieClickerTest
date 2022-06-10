@@ -5,7 +5,7 @@ class Player:
     buildings = []
 
     def __init__(self) -> None:
-        self.money = 0
+        self.money = 500
         self.upgrades = []
         self.buildings = []
 
