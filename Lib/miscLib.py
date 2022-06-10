@@ -4,4 +4,6 @@ def disableButton(buttonList, id):
     buttonList[id]["state"] = DISABLED
 
 def enableButton(buttonList, id):
-    buttonList[id]["state"] = NORMAL
+    # print(buttonList[id]["state"])
+    if not buttonList[id]["state"] == NORMAL:
+        buttonList[id]["state"] = NORMAL

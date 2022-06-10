@@ -22,7 +22,7 @@ def initUpgradeButtons(tk, upgrades):
     upgradeList = []
     for upgrade in upgrades:
         upgradeList.append(Button(tk, text =str(upgrade)))
-        upgradeList[i]['command']=lambda idx=i, binst = upgradeList[i]: [upgrade.buyUpgrade(), selfDestruct(idx, binst)]
+        upgradeList[i]['command']=lambda idx=i, binst = upgradeList[i]: [upgrade.buyUpgrade(), selfDestruct(idx, binst, upgrades, upgradeList)]
         upgradeList[i].grid(row=i, column=2)
         i+=1
     return upgradeList
@@ -31,13 +31,17 @@ def calculateUpgrades(upgradesList, buttonList, player):
 
     i = 0
     for upgrade in upgradesList:
+        if i>= len(buttonList):
+            break
         if upgrade.cost > player.money:
             disableButton(buttonList, i)
         else:
             enableButton(buttonList, i)
         
+        
         i+=1
 
-def selfDestruct(idx, binst):
-    
+def selfDestruct(idx, binst, upgradeList, buttonList):
+    buttonList.remove(binst)
     binst.destroy()
+    

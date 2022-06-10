@@ -2,6 +2,7 @@ from sqlalchemy import null
 
 
 class Upgrade:
+
     name = ""
 
     # This gives the id of the building it effects. -1 = player's click
@@ -17,6 +18,7 @@ class Upgrade:
 
 
     def __init__(self, name, affectedBuilding, effect, magnitude, cost, player) -> None:
+        # self.id = id
         self.name = name
         self.affectedBuilding = affectedBuilding
         self.effect = effect
@@ -35,6 +37,7 @@ class Upgrade:
     def buyUpgrade(self):
         self.player.money -= self.cost
         self.player.upgrades.append(self)
+        self.state = "bought"
 
     def __str__(self) -> str:
         if self.effect == "%":
