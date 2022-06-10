@@ -41,7 +41,4 @@ class Upgrade:
 
     def __str__(self) -> str:
         if self.effect == "%":
-            if len(self.affectedBuilding) ==1:
-                return self.name + " +" +str(self.magnitude) +"% increase to " + self.player.buildings[self.affectedBuilding[0]].name
-            else: 
-                return self.name + " +" +str(self.magnitude) +"% increase to " + self.player.buildings[self.affectedBuilding[1]].name
+                return self.name + " +" +str(self.magnitude) +"% increase to " + self.player.buildings[self.affectedBuilding].name + " $" + str(self.cost)
