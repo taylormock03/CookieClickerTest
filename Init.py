@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from Classes.Player import Player
+from Lib.buildLib import *
 from Lib.upgradeLib import *
 
 # how many ms between each game tick
@@ -24,15 +25,18 @@ cpsLbl.grid(row=3, column=0, padx="20", pady="20")
 Button(tk, text="Cookie", command= player.click).grid(row=4, column=0, padx="20", pady="20")
 
 buildings = initBuildings(player, TICKSPEED)
-buildButtons = initUpgradeList(tk, buildings)
+buildButtons = initBuildButtons(tk, buildings)
 player.addBuildings(buildings)
 
+upgrades = initUpgrades(player)
 
+upgradeButtons = initUpgradeButtons(tk, upgrades)
 
 
 # main loop updated every 100ms
 while True:
     tk.after(TICKSPEED,player.calculateMoney(moneyLbl))
     tk.after(0,calculateBuildings(buildings, buildButtons, player))
+    tk.after(0,calculateUpgrades(upgrades, upgradeButtons, player))
     tk.after(0, player.calculateCps(cpsLbl, TICKSPEED))
     tk.update()
