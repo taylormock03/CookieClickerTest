@@ -14,22 +14,27 @@ tk.title("Cookie Clicker")
 
 player = Player()
 
-Label(tk, text="Money").grid(row=0, column=0, padx="20", pady="5")
-moneyLbl = Label(tk, text="0")
-moneyLbl.grid(row=1, column=0, padx="20", pady="20")
+# Money Frame
+moneyFrame = Frame(tk)
+moneyFrame.grid(row=0, column=0)
+Label(moneyFrame, text="Money").pack()
+moneyLbl = Label(moneyFrame, text="0")
+moneyLbl.pack()
 
-Label(tk, text="Cookies per Second").grid(row=2, column=0, padx="20", pady="5")
-cpsLbl = Label (tk)
-cpsLbl.grid(row=3, column=0, padx="20", pady="20")
+Label(moneyFrame, text="Cookies per Second").pack()
+cpsLbl = Label (moneyFrame)
+cpsLbl.pack()
 
-Button(tk, text="Cookie", command= player.click).grid(row=4, column=0, padx="20", pady="20")
+Button(moneyFrame, text="Cookie", command= player.click).pack()
 
+
+# Buildings
 buildings = initBuildings(player, TICKSPEED)
 buildButtons = initBuildButtons(tk, buildings)
 player.addBuildings(buildings)
 
+# Upgrades
 upgrades = initUpgrades(player)
-
 upgradeButtons = initUpgradeButtons(tk, upgrades)
 
 

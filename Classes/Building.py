@@ -1,5 +1,7 @@
 import math
 
+from Lib.miscLib import filterUpgrades
+
 
 class Building:
     name = ""
@@ -32,7 +34,7 @@ class Building:
         return output
 
     def calculateCps(self, TICKSPEED, player):
-        return self.calculateOutput(player.upgrades) * (1000/TICKSPEED)
+        return self.calculateOutput(filterUpgrades(self,player.upgrades)) * (1000/TICKSPEED)
 
     def __str__(self) -> str:
         return self.name + " x" + str(self.quantity) + ": $" + str(self.calculateCost())
